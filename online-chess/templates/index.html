@@ -1,0 +1,63 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Çevrimiçi Satranç</title>
+
+  <!-- Chessboard.js CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.min.css"
+  />
+  <!-- Projenizin kendi stil dosyası -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <header class="app-header">Çevrimiçi Satranç</header>
+
+  <main class="app-container">
+    <section class="card board-card">
+      <div id="board-area">
+        <div id="board"></div>
+        <div id="status" class="status-text"></div>
+      </div>
+    </section>
+
+    <aside class="card info-card">
+      <div id="player-info">
+        <h2>Oyuncular</h2>
+        <ul id="players-list"></ul>
+        <div id="countdown" class="timer-box"></div>
+        <button id="restartBtn">Yeni Oyuna Başla</button>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Karşılama/üyarı kutusu -->
+  <div id="welcomeAlert" class="custom-alert" style="display:none;">
+    <span id="alertText"><strong></strong></span>
+    <span class="close-btn"
+          onclick="document.getElementById('welcomeAlert').style.display='none'">
+      &times;
+    </span>
+  </div>
+
+  <!-- Oyun sonucu popup’u -->
+  <div id="resultBox" class="result-popup" style="display:none;">
+    <h2 id="resultMessage">Oyun Bitti</h2>
+    <button id="result-restart">Yeni Oyun</button>
+  </div>
+
+  <!-- JS Kütüphaneler -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.min.js">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.4/socket.io.min.js"></script>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
