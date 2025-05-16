@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO, emit, join_room, leave_room
 import chess
-
+#import os
 app = Flask(__name__)
 socketio = SocketIO(app, cors_allowed_origins="*")
 
@@ -183,5 +183,12 @@ def handle_disconnect():
         leave_room(room)
         update_player_list(room)
 
-if __name__ == '__main__':
-    socketio.run(app, port=5000, debug=True)
+import os
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    print(f"Listening on port {port}")  # Loga port numarasını yazdır
+    socketio.run(app, host="0.0.0.0", port=port, debug=False)
+
+
+
